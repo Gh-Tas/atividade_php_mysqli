@@ -1,17 +1,3 @@
-<?php
-include_once 'conection.php';
-
-$id = 0;
-
-$stmt = $conn->prepare("SELECT * FROM alunos WHERE id_aluno > ?");
-
-$stmt->bind_param("i", $id);
-$stmt->execute();
-
-$results = $stmt->get_result();
-$data = $results->fetch_all();
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -65,10 +51,8 @@ $data = $results->fetch_all();
 </head>
 
 <body>
-    <form action="" method="get">
-        <button>
-            Alunos
-        </button>
+    <form action="select.php" method="get">
+        <button>Mostrar Aluno</button>
     </form>
 
     <form action="insert.php" method="post">
@@ -85,14 +69,4 @@ $data = $results->fetch_all();
         <button>Deletar Aluno</button>
     </form>
 </body>
-
 </html>
-
-<?php
-
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-    echo "<pre>";
-    print_r($data);
-}
-
-?>
